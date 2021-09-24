@@ -6,7 +6,7 @@ namespace TicTacToe_Test
     public class GameEvaluatorTest
     {
         [Fact]
-        public void Winner_Should_Be_Printed_If_Winning_Combinations_Reached_case2()
+        public void In_Progress_Should_Be_Printed_If_No_Winning_Combinations_case2()
         {
             //assign
             var cells = new string[][]
@@ -17,7 +17,7 @@ namespace TicTacToe_Test
             };
             var board = new Board(cells);
             var evaluator = new GameEvaluator();
-            var expectedOutcome = "X-Player wins";
+            var expectedOutcome = "";
 
             //act
             var actualOutcome = evaluator.GameOutcome(board);

@@ -11,26 +11,23 @@ namespace TicTacToe
             var occurance = 0;
             var outcome = "";
             var win = false;
-            
-            for (int i = 0; i < cells.Length; i++) //down
+            //while loop - while(condition)
+            //for loop - for(initial_state;condition;change_state)
+            for (int y = 0; y < cells.Length && !win; y++) //down
             {
-                /*if (cells[i].Contains("X"))
+                for (int x = 0; x < cells[y].Length; x++) //across //look at time complexity
                 {
-                    occurance += 1;
-                }*/
-                for (int j = 0; j < cells[i].Length; j++) //across
-                {
-                    if (cells[i][j].Contains("X")) // [0] [1] [2] line 1
+                    if (cells[y][x].Contains("X")) 
                     {
                         occurance += 1;
                     }
                 }
-            }
-
-            if (occurance == 3)
-            {
-                outcome = "X-Player wins";
-                win = true;
+                if (occurance == 3)
+                {
+                    outcome = "X-Player wins";
+                    win = true;
+                }
+                occurance = 0;
             }
             
             Console.WriteLine(outcome);
