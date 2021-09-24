@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TicTacToe;
 using Xunit;
 
@@ -15,6 +12,8 @@ namespace TicTacToe_Test
         [InlineData(new[]{"X", "X", "X"}, new[]{".", ".", "."}, new[]{".", ".", "."})]
         [InlineData(new[]{".", ".", "."}, new[]{"X", "X", "X"}, new[]{".", ".", "."})]
         [InlineData(new[]{".", ".", "."}, new[]{".", ".", "."}, new[]{"X", "X", "X"})]
+        [InlineData(new[]{"X", ".", "."}, new[]{".", "X", "."}, new[]{".", ".", "X"})]
+        [InlineData(new[]{".", ".", "X"}, new[]{".", "X", "."}, new[]{"X", ".", "."})]
         public void Winner_Should_Be_Printed_If_Winning_Combinations_Reached(params string[][] cells)
         {
             //assign
@@ -49,22 +48,6 @@ namespace TicTacToe_Test
 
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);
-        }
-        
-        [Fact]
-        public void Draw_Should_Be_Printed_If_No_Winning_Combinations()
-        {
-            //assign
-            var board = new Board();
-            var evaluator = new GameEvaluator();
-            var expectedOutcome = "In progress";
-
-            //act
-            var actualOutcome = evaluator.GameOutcome(board);
-
-            //assert
-            Assert.Equal(expectedOutcome, actualOutcome);
-
         }
     }
 }
