@@ -11,8 +11,7 @@ namespace TicTacToe
             var occurrence = 0;
             var outcome = "";
             var win = false;
-            //"in progress" (if there is no win and there are empty cells)
-            
+
             for (int y = 0; y < cells.Length && !win; y++)
             {
                 for (int x = 0; x < cells[y].Length; x++)
