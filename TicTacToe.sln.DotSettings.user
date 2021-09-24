@@ -12,5 +12,7 @@
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.Winner_Should_Be_Printed_If_Winning_Combinations_Reached&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.Winner_Should_Be_Printed_If_Winning_Combinations_Reached_case2&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.In_Progress_Should_Be_Printed_If_No_Winning_Combinations_case2&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.Winner_Should_Be_Printed_If_Winning_Combinations_Reached_case3&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.In_Progress_Should_Be_Printed_If_No_Winning_Combinations_And_Empty_Cells_Still_Present&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
