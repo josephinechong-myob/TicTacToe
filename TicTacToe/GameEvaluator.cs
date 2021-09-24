@@ -33,8 +33,6 @@ namespace TicTacToe
                 win = true;
             }
             
-            //if(!win && )
-
             Console.WriteLine(outcome);
 
             //"in progress" (if there is no win and there are empty cells)
