@@ -12,15 +12,15 @@ namespace TicTacToe
             var outcome = "";
             var win = false;
             
-            for (int i = 0; i < cells.Length; i++)
+            for (int i = 0; i < cells.Length; i++) //down
             {
-                if (cells[i].Contains("X"))
+                /*if (cells[i].Contains("X"))
                 {
                     occurance += 1;
-                }
-                for (int j = 0; j < cells.Length; j++)
+                }*/
+                for (int j = 0; j < cells[i].Length; j++) //across
                 {
-                    if (cells[j].Contains("X"))
+                    if (cells[i][j].Contains("X")) // [0] [1] [2] line 1
                     {
                         occurance += 1;
                     }
