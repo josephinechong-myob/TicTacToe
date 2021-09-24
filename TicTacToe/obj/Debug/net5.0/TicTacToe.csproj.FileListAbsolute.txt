@@ -1,0 +1,15 @@
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/TicTacToe.deps.json
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/TicTacToe.runtimeconfig.json
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/TicTacToe.runtimeconfig.dev.json
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/TicTacToe.dll
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/ref/TicTacToe.dll
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/bin/Debug/net5.0/TicTacToe.pdb
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.csprojAssemblyReference.cache
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.GeneratedMSBuildEditorConfig.editorconfig
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.AssemblyInfoInputs.cache
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.AssemblyInfo.cs
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.csproj.CoreCompileInputs.cache
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.dll
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/ref/TicTacToe.dll
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.pdb
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe/obj/Debug/net5.0/TicTacToe.genruntimeconfig.cache

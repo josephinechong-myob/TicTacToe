@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/josephine.chong/Library/Caches/JetBrains/Rider2020.3/resharper-host/temp/Rider/vAny/CoverageData/_TicTacToe.942252836/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1039159b_002Dfabd_002D4137_002Dabc8_002Da1392c35d27b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="New_Board_Should_Print_Initial_Board" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.BoardTest.New_Board_Should_Print_Initial_Board&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.BoardTest.Board_Should_Assign_Picked_Position_Zero_Zero_On_Top_Left_Corner&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.Winner_Should_Be_Printed_If_Winning_Combinations_Reached&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
