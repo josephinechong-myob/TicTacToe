@@ -19,11 +19,12 @@ namespace TicTacToe_Test
             //assign
             
             var board = new Board(cells);
+            var insignia = "X";
             var evaluator = new GameEvaluator();
             var expectedOutcome = "X-Player wins";
 
             //act
-            var actualOutcome = evaluator.GameOutcome(board);
+            var actualOutcome = evaluator.GameOutcome(board, insignia);
 
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);
@@ -40,11 +41,12 @@ namespace TicTacToe_Test
         {
             //assign
             var board = new Board(cells);
+            var insignia = "X";
             var evaluator = new GameEvaluator();
             var expectedOutcome = "";
 
             //act
-            var actualOutcome = evaluator.GameOutcome(board);
+            var actualOutcome = evaluator.GameOutcome(board, insignia);
 
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);

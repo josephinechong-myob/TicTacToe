@@ -4,7 +4,7 @@ namespace TicTacToe
 {
     public class GameEvaluator
     {
-        public string GameOutcome(Board board) //could output enum
+        public string GameOutcome(Board board, string insignia) //could output enum
         {
             var cells = board.Cells;
             var occurrence = 0;
@@ -15,34 +15,34 @@ namespace TicTacToe
             {
                 for (int x = 0; x < cells[y].Length; x++)
                 {
-                    if (cells[y][x].Contains("X")) 
+                    if (cells[y][x].Contains(insignia)) 
                     {
                         occurrence += 1;
                     }
                     if (y == 0 && (x == 0 || x == 1 || x == 2))
                     {
-                        if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == "X")
+                        if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == insignia)
                         {
-                            outcome = "X-Player wins";
+                            outcome = $"{insignia}-Player wins";
                             win = true; 
                         }
                     }
                     if (y == 0 && x == 0)
                     {
                         if (
-                            (cells[y][x] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x + 2] && cells[y][x] == "X") 
+                            (cells[y][x] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x + 2] && cells[y][x] == insignia) 
                             || 
-                            (cells[y][x + 2] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x] && cells[y][x + 2] == "X")
+                            (cells[y][x + 2] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x] && cells[y][x + 2] == insignia)
                             )
                         {
-                            outcome = "X-Player wins";
+                            outcome = $"{insignia}-Player wins";
                             win = true;
                         }
                     }
                 }
                 if (occurrence == 3)
                 {
-                    outcome = "X-Player wins";
+                    outcome = $"{insignia}-Player wins";
                     win = true;
                 }
                 occurrence = 0;
