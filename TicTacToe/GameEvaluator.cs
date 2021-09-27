@@ -8,7 +8,7 @@ namespace TicTacToe
         {
             var cells = board.Cells;
             var occurrence = 0;
-            var outcome = "";
+            var outcome = $"Game is {Status.Ongoing}";
             var win = false;
 
             for (int y = 0; y < cells.Length && !win; y++)
@@ -23,7 +23,7 @@ namespace TicTacToe
                     {
                         if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == insignia)
                         {
-                            outcome = $"{insignia}-Player wins";
+                            outcome = $"{insignia}-Player has {Status.Won}";
                             win = true; 
                         }
                     }
@@ -35,14 +35,14 @@ namespace TicTacToe
                             (cells[y][x + 2] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x] && cells[y][x + 2] == insignia)
                             )
                         {
-                            outcome = $"{insignia}-Player wins";
+                            outcome = $"{insignia}-Player has {Status.Won}";
                             win = true;
                         }
                     }
                 }
                 if (occurrence == 3)
                 {
-                    outcome = $"{insignia}-Player wins";
+                    outcome = $"{insignia}-Player has {Status.Won}";
                     win = true;
                 }
                 occurrence = 0;

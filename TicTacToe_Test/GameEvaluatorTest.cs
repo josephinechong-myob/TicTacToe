@@ -21,7 +21,7 @@ namespace TicTacToe_Test
             var board = new Board(cells);
             var insignia = "X";
             var evaluator = new GameEvaluator();
-            var expectedOutcome = "X-Player wins";
+            var expectedOutcome = "X-Player has Won";
 
             //act
             var actualOutcome = evaluator.GameOutcome(board, insignia);
@@ -43,7 +43,7 @@ namespace TicTacToe_Test
             var board = new Board(cells);
             var insignia = "X";
             var evaluator = new GameEvaluator();
-            var expectedOutcome = "";
+            var expectedOutcome = "Game is Ongoing";
 
             //act
             var actualOutcome = evaluator.GameOutcome(board, insignia);
