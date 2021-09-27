@@ -4,6 +4,14 @@ namespace TicTacToe
 {
     public class GameEvaluator
     {
+        private bool ThereIsAVerticalWin(string[][] cells, int x, int y, string insignia)
+        {
+            if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == insignia)
+            {
+                return true;
+            }
+            return false;
+        }
         public string GameOutcome(Board board, string insignia) //could output enum
         {
             var cells = board.Cells;
@@ -19,21 +27,20 @@ namespace TicTacToe
                     {
                         occurrence += 1;
                     }
-                    if (y == 0 && (x == 0 || x == 1 || x == 2))
+                    
+                    if(y == 0 && ThereIsAVerticalWin(cells, x, y, insignia))
                     {
-                        if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == insignia)
-                        {
-                            outcome = $"{insignia}-Player has {Status.Won}";
-                            win = true; 
-                        }
+                        outcome = $"{insignia}-Player has {Status.Won}";
+                        return outcome;
                     }
+                    
                     if (y == 0 && x == 0)
                     {
                         if (
-                            (cells[y][x] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x + 2] && cells[y][x] == insignia) 
+                            (cells[y][x] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x + 2] && cells[y][x] == insignia) //diagonal
                             || 
                             (cells[y][x + 2] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x] && cells[y][x + 2] == insignia)
-                            )
+                        )
                         {
                             outcome = $"{insignia}-Player has {Status.Won}";
                             win = true;

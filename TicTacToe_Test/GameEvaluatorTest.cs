@@ -24,7 +24,7 @@ namespace TicTacToe_Test
             var expectedOutcome = "X-Player has Won";
 
             //act
-            var actualOutcome = evaluator.GameOutcome(board, insignia);
+            var actualOutcome = evaluator.GameOutcome(board,insignia);
 
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);
@@ -44,6 +44,30 @@ namespace TicTacToe_Test
             var insignia = "X";
             var evaluator = new GameEvaluator();
             var expectedOutcome = "Game is Ongoing";
+
+            //act
+            var actualOutcome = evaluator.GameOutcome(board, insignia);
+
+            //assert
+            Assert.Equal(expectedOutcome, actualOutcome);
+        }
+        
+        [Theory]
+        [InlineData(
+            new[]{"X", "O", "X"}, 
+            new[]{"O", "O", "X"}, 
+            new[]{"X", "X", "O"})]
+        [InlineData(
+            new[]{"X", "O", "X"}, 
+            new[]{"X", "X", "O"}, 
+            new[]{"O", "X", "O"})]
+        public void Draw_Should_Be_Printed_If_No_Winning_Combinations_And_All_Cells_Filled(params string[][] cells)
+        {
+            //assign
+            var board = new Board(cells);
+            var insignia = "X";
+            var evaluator = new GameEvaluator();
+            var expectedOutcome = "There is a Draw";
 
             //act
             var actualOutcome = evaluator.GameOutcome(board, insignia);
