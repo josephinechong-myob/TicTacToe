@@ -69,13 +69,13 @@ namespace TicTacToe
                         outcome = $"{insignia}-Player has {Status.Won}";
                         return outcome;
                     }
-                    
+                    if (occurrence == 3)
+                    {
+                        outcome = $"{insignia}-Player has {Status.Won}";
+                        return outcome;
+                    }
                 }
-                if (occurrence == 3)
-                {
-                    outcome = $"{insignia}-Player has {Status.Won}";
-                    win = true;
-                }
+                
                 occurrence = 0;
             }
             Console.WriteLine(outcome);
