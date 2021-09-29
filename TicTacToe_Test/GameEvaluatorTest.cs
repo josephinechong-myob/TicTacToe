@@ -61,6 +61,7 @@ namespace TicTacToe_Test
             new[]{"X", "O", "X"}, 
             new[]{"X", "X", "O"}, 
             new[]{"O", "X", "O"})]
+        
         public void Draw_Should_Be_Printed_If_No_Winning_Combinations_And_All_Cells_Filled(params string[][] cells)
         {
             //assign
@@ -75,5 +76,30 @@ namespace TicTacToe_Test
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);
         }
+        
+        /*[Theory]
+        [InlineData(
+            new[]{"X", ".", "X"}, 
+            new[]{"O", "O", "X"}, 
+            new[]{"X", ".", "O"})]
+        [InlineData(
+            new[]{"X", "O", "."}, 
+            new[]{".", "X", "."}, 
+            new[]{"O", "X", "O"})]
+        
+        public void Forfeit_Should_Be_Printed_If_Game_Is_Ongoing_And_Player_Quits(params string[][] cells)
+        {
+            //assign
+            var board = new Board(cells);
+            var insignia = "X";
+            var evaluator = new GameEvaluator();
+            var expectedOutcome = "There is a Forfeit";
+
+            //act
+            var actualOutcome = evaluator.GameOutcome(board, insignia);
+
+            //assert
+            Assert.Equal(expectedOutcome, actualOutcome);
+        }*/
     }
 }
