@@ -93,31 +93,30 @@ namespace TicTacToe
         public string GameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
         {
             var cells = board.Cells;
-            var occurrence = 0;
             var outcome = _inProgress;
-            var win = false;
-            
-            if (ThereIsADiagonalWin(cells, insignia))
+
+            if (ThereIsADiagonalWin(cells, insignia)) //O = 1 time complexity Best case
             {
                 outcome = $"{insignia}-Player has {Status.Won}";
                 return outcome;
             }
             
-            for (int y = 0; y < cells.Length; y++) // time y = 3 (traditionally it would be y^2, but this is Big O notation is y*x)
+            for (int y = 0; y < cells.Length; y++) // time y = 3 (traditionally it would be y^2, but this is Big O notation is y*x) n^2 n*k
             {
-                for (int x = 0; x < cells[y].Length; x++) // time x = 3 
+                if (cells[y][0] == cells[y][1] && cells[y][1] == cells[y][2] && cells[y][0] == insignia) //horizontal win
                 {
-                    if (cells[y][x].Contains(insignia)) 
-                    {
-                        occurrence += 1;
-                    }
-                    outcome = GetCurrentOutcome(cells, x, y, insignia, occurrence);
-                    if (outcome != _inProgress)
-                    {
-                        return outcome;
-                    }
+                    outcome = $"{insignia}-Player has {Status.Won}";
+                    return outcome;
                 }
-                occurrence = 0;
+            }
+            
+            for (int x = 0; x < cells.Length; x++) // vertical win
+            {
+                if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
+                {
+                    outcome = $"{insignia}-Player has {Status.Won}";
+                    return outcome;
+                }
             }
 
             if (IsItADraw(cells))
