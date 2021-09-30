@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using TicTacToe;
 using Xunit;
 
@@ -5,7 +7,9 @@ namespace TicTacToe_Test
 {
     public class GameEvaluatorTest
     {
+        
         [Theory]
+        //[ClassData(typeof(PossibleBoardOutcomes))]
         [InlineData(new[]{"X", ".", "."}, new[]{"X", ".", "."}, new[]{"X", ".", "."})]
         [InlineData(new[]{".", "X", "."}, new[]{".", "X", "."}, new[]{".", "X", "."})]
         [InlineData(new[]{".", ".", "X"}, new[]{".", ".", "X"}, new[]{".", ".", "X"})]
@@ -101,5 +105,15 @@ namespace TicTacToe_Test
             //assert
             Assert.Equal(expectedOutcome, actualOutcome);
         }*/
+        private class PossibleBoardOutcomes : IEnumerable<object[]> //classData Enumerator
+        {
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return new object[] {new[] {"X", ".", "."}, new[] {"X", ".", "."}, new[] {"X", ".", "."}};
+                yield return new object[] {new[] {"X", "X", "X"}, new[] {".", ".", "."}, new[] {".", ".", "."}};
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
     }
 }
