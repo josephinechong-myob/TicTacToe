@@ -90,42 +90,47 @@ namespace TicTacToe
             return false;
         }*/
         
-        public string GameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
+        public Enum GameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
         {
             var cells = board.Cells;
             var outcome = _inProgress;
-
+            
             if (ThereIsADiagonalWin(cells, insignia)) //O = 1 time complexity Best case
             {
-                outcome = $"{insignia}-Player has {Status.Won}";
-                return outcome;
+                Console.WriteLine($"{insignia}-Player has {Status.Won}");
+                //return outcome;
+                return Status.Won;
             }
             
             for (int y = 0; y < cells.Length; y++) // time y = 3 (traditionally it would be y^2, but this is Big O notation is y*x) n^2 n*k
             {
                 if (cells[y][0] == cells[y][1] && cells[y][1] == cells[y][2] && cells[y][0] == insignia) //horizontal win
                 {
-                    outcome = $"{insignia}-Player has {Status.Won}";
-                    return outcome;
+                    Console.WriteLine($"{insignia}-Player has {Status.Won}");
+                    //return outcome;
+                    return Status.Won;
                 }
             }
             
-            for (int x = 0; x < cells.Length; x++) // vertical win
+            for (int x = 0; x < cells.Length; x++) // vertical win (overall time complexity 2n vs n^2/n*k) try not to use y and x as it could be related t coordinates
             {
                 if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
                 {
-                    outcome = $"{insignia}-Player has {Status.Won}";
-                    return outcome;
+                    Console.WriteLine($"{insignia}-Player has {Status.Won}");
+                    //return outcome;
+                    return Status.Won;
                 }
             }
 
             if (IsItADraw(cells))
             {
-                outcome = $"There is a {Status.Draw}";
+                Console.WriteLine($"There is a {Status.Draw}");
+                return Status.Draw;
             }
             /*else if(!stillPlaying && !IsItADraw(cells)){outcome = $"There is a {Status.Forfeit}";}*/
             Console.WriteLine(outcome);
-            return outcome;
+            //return outcome;
+            return Status.Ongoing;
         }
 
         /*private bool IsThereAFastWin(string[][] cells,string insignia)

@@ -35,12 +35,13 @@ namespace TicTacToe
             return boardString;
         }
 
-        public string SetChoice(string coordinate, string insignia) //do not overwrite existing players position
+        public string SetChoice(string coordinate, Enum insignia) //do not overwrite existing players position
         {
+            
             var index = coordinate.Split(",");
             var first = Int32.Parse(index[0]);
             var second = Int32.Parse(index[1]);
-            Cells[first][second] = insignia;
+            Cells[first][second] = insignia.ToString();
             return BoardToString();
         }
         //reset board

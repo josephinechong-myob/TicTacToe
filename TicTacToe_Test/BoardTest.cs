@@ -26,7 +26,7 @@ namespace TicTacToe_Test
             var board = new Board();
             var expectedBoard = $"O . . \n. . . \n. . . \n";
             var input = "0,0";
-            var symbol = "O";
+            var symbol = Insignia.O;
 
             //act
             var actualBoard = board.SetChoice(input, symbol);
@@ -43,7 +43,7 @@ namespace TicTacToe_Test
             var board = new Board();
             var expectedBoard = $"X . . \n. . . \n. . . \n";
             var input = "0,0";
-            var symbol = "O";
+            var symbol = Insignia.X;
 
             //act
             var actualBoard = board.SetChoice(input, symbol);
