@@ -7,9 +7,15 @@
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.Winner_Should_Be_Printed_If_Winning_Combinations_Reached&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest.In_Progress_Should_Be_Printed_If_No_Winning_Combinations_And_Empty_Cells_Still_Present&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bcccf811_002D0a37_002D4de4_002D8e61_002D933698d1314a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Winner_Should_Be_Printed_If_Winning_Combinations_Reached" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3773e960_002D6f7a_002D40be_002Dafd4_002D08e8e9419429/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PlayerX_Should_Win_If_Winning_Pattern_Achieved" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameTest.PlayerX_Should_Win_If_Winning_Pattern_Achieved&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bcccf811_002D0a37_002D4de4_002D8e61_002D933698d1314a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Winner_Should_Be_Printed_If_Winning_Combinations_Reached" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;
     &lt;TestAncestor&gt;
       &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameEvaluatorTest&lt;/TestId&gt;
@@ -17,6 +23,7 @@
       &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.BoardTest.BoardStatus_Should_Print_Current_Board_New_Board&lt;/TestId&gt;
       &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.BoardTest.BoardStatus_Should_Print_Current_Board_X&lt;/TestId&gt;
       &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.BoardTest&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::CE1AE410-220A-4A4F-B7ED-15D086D47D91::net5.0::TicTacToe_Test.GameTest.PlayerX_Should_Win_If_Winning_Pattern_Achieved&lt;/TestId&gt;
     &lt;/TestAncestor&gt;
     &lt;ProjectFile&gt;CE1AE410-220A-4A4F-B7ED-15D086D47D91/f:GameEvaluatorTest.cs&lt;/ProjectFile&gt;
   &lt;/Or&gt;

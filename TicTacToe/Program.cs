@@ -6,7 +6,8 @@ namespace TicTacToe
     {
         static void Main()
         {
-            var game = new Game();
+            var console = new GameConsole();
+            var game = new Game(console);
             game.Run();
         }
     }

@@ -7,7 +7,8 @@ namespace TicTacToe
     public class Board
     {
         public string[][] Cells { get; set; }
-        public Board()
+        private readonly IConsole _console;
+        public Board(IConsole console)
         {
             Cells = new string[][]
             {
@@ -15,10 +16,12 @@ namespace TicTacToe
                 new string[]{".",".","."},
                 new string[]{".",".","."},
             };
+            _console = console;
         }
-        public Board(String[][] cells)
+        public Board(String[][] cells, IConsole console)
         {
             Cells = cells;
+            _console = console;
         }
         
         public string BoardToString()
@@ -61,8 +64,8 @@ namespace TicTacToe
         {
             var x = (Cells.Any(c => c.Contains("O") || c.Contains("X"))) ? "Move accepted, h" : "H";
             var text = $"{x}ere's the current board:";
-            Console.WriteLine(text);
-            Console.WriteLine(BoardToString());
+            _console.WriteLine(text);
+            _console.WriteLine(BoardToString());
         }
 
         //always 2 players always be O or X based on player

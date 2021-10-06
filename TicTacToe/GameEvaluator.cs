@@ -6,7 +6,7 @@ namespace TicTacToe
     public class GameEvaluator
     {
         private readonly string _inProgress = $"Game is {Status.Ongoing}";
-        
+
         private bool ThereIsAVerticalWin(string[][] cells, int x, int y, string insignia)
         {
             if (cells[y][x] == cells[y + 1][x] && cells[y + 1][x] == cells[y + 2][x] && cells[y][x] == insignia)
@@ -90,25 +90,47 @@ namespace TicTacToe
             return false;
         }*/
         
-        public Enum GameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
+        
+        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
         {
             var cells = board.Cells;
             var outcome = _inProgress;
+            Insignia insig;
             
             if (ThereIsADiagonalWin(cells, insignia)) //O = 1 time complexity Best case
             {
-                Console.WriteLine($"{insignia}-Player has {Status.Won}");
-                //return outcome;
-                return Status.Won;
+                //Insignia insig;
+                if (Insignia.TryParse(insignia, out insig))
+                {
+                    return new GameOutcome
+                    {
+                        Status = Status.Won,
+                        Winner = insig
+                    };  
+                }
+                else
+                {
+                    throw new Exception("Could not pass insignia");
+                }
             }
             
             for (int y = 0; y < cells.Length; y++) // time y = 3 (traditionally it would be y^2, but this is Big O notation is y*x) n^2 n*k
             {
                 if (cells[y][0] == cells[y][1] && cells[y][1] == cells[y][2] && cells[y][0] == insignia) //horizontal win
                 {
-                    Console.WriteLine($"{insignia}-Player has {Status.Won}");
-                    //return outcome;
-                    return Status.Won;
+                    //Insignia insig;
+                    if (Insignia.TryParse(insignia, out insig))
+                    {
+                        return new GameOutcome
+                        {
+                            Status = Status.Won,
+                            Winner = insig
+                        };  
+                    }
+                    else
+                    {
+                        throw new Exception("Could not pass insignia");
+                    }
                 }
             }
             
@@ -116,21 +138,40 @@ namespace TicTacToe
             {
                 if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
                 {
-                    Console.WriteLine($"{insignia}-Player has {Status.Won}");
-                    //return outcome;
-                    return Status.Won;
+                    //Insignia insig;
+                    if (Insignia.TryParse(insignia, out insig))
+                    {
+                        return new GameOutcome
+                        {
+                            Status = Status.Won,
+                            Winner = insig
+                        };  
+                    }
+                    else
+                    {
+                        throw new Exception("Could not pass insignia");
+                    }
                 }
             }
 
             if (IsItADraw(cells))
             {
-                Console.WriteLine($"There is a {Status.Draw}");
-                return Status.Draw;
+                return new GameOutcome
+                {
+                    Status = Status.Draw,
+                };  
+              
             }
             /*else if(!stillPlaying && !IsItADraw(cells)){outcome = $"There is a {Status.Forfeit}";}*/
-            Console.WriteLine(outcome);
+            
             //return outcome;
-            return Status.Ongoing;
+            //return Status.Ongoing;
+            
+            return new GameOutcome
+            {
+                Status = Status.Ongoing,
+            };  
+           
         }
 
         /*private bool IsThereAFastWin(string[][] cells,string insignia)

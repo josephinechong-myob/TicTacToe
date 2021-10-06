@@ -99,3 +99,5 @@
 /Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe_Test/obj/Debug/net5.0/ref/TicTacToe_Test.dll
 /Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe_Test/obj/Debug/net5.0/TicTacToe_Test.pdb
 /Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe_Test/obj/Debug/net5.0/TicTacToe_Test.genruntimeconfig.cache
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe_Test/bin/Debug/net5.0/Castle.Core.dll
+/Users/josephine.chong/Documents/FMA/TicTacToe/TicTacToe_Test/bin/Debug/net5.0/Moq.dll
