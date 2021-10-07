@@ -5,8 +5,8 @@ namespace TicTacToe
 {
     public class Game
     {
-        public Insignia Insignia { get; set; } //set to X or O to alternate between player 1 and player 2
-        private IConsole _console;
+        private Insignia Insignia { get; set; } 
+        private readonly IConsole _console;
 
         public Game(IConsole console)
         {
@@ -18,7 +18,7 @@ namespace TicTacToe
             _console.WriteLine("Welcome to Tic Tac Toe!");
         }
 
-        private string Coordinates(Enum insignia) //user input
+        private string Coordinates(Enum insignia)
         {
             var player = (insignia.Equals(Insignia.X)) ? "Player 1": "Player 2";
             _console.WriteLine($"{player} enter a coord x,y to place your {insignia} or enter 'q' to give up:"); //player 1 = X
@@ -51,10 +51,8 @@ namespace TicTacToe
                     Insignia = Insignia.X;
                 } 
             }
-            
         }
-        //method play
-        
+
         public void Run()
         {
             var board = new Board(_console);
@@ -62,7 +60,5 @@ namespace TicTacToe
             Greeting();
             Play(board);
         }
-        //player X starts 
-        //
     }
 }

@@ -40,11 +40,20 @@ namespace TicTacToe
 
         public string SetChoice(string coordinate, Enum insignia) //do not overwrite existing players position
         {
-            
             var index = coordinate.Split(",");
             var first = Int32.Parse(index[0]);
             var second = Int32.Parse(index[1]);
+  
+            if (Cells[first][second] == ".")
+            {
             Cells[first][second] = insignia.ToString();
+            }
+            else
+            {
+             //throw new InvalidOperationException("This position is already occupied. Please enter another position");
+             throw new Exception("This position is already occupied. Please enter another position");
+            }
+            
             return BoardToString();
         }
         //reset board

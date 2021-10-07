@@ -55,7 +55,27 @@ namespace TicTacToe_Test
             Assert.Equal(expectedBoard, actualBoard);
 
         }
-        
+
+        [Fact] //Reset - to do
+        public void Existing_Coordinate_Should_Not_Be_Overwritten()
+        {
+            //arrange
+            var console = new GameConsole();
+            var board = new Board(console);
+            var expectedBoard = $"X . . \n. . . \n. . . \n";
+            var input = "0,0";
+            var firstPlayer = Insignia.X;
+            var secondPlayer = Insignia.O;
+
+            //act
+            // var actualBoard = board.SetChoice(input, firstPlayer);
+            var actualBoard = board.SetChoice(input, firstPlayer);
+            Assert.Throws<Exception>(() => board.SetChoice(input, secondPlayer));
+
+        //assert
+            Assert.Equal(expectedBoard, actualBoard);
+
+        }
         /*[Fact] //Board status
         public void BoardStatus_Should_Print_Current_Board_New_Board()
         {
