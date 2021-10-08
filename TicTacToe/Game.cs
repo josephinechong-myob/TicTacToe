@@ -34,8 +34,21 @@ namespace TicTacToe
             while (!winner)
             {
                 board.BoardStatus();
-                var input = Coordinates(Insignia);
-                board.SetChoice(input, Insignia);
+                bool choiceIsValid = false;
+                while (!choiceIsValid)
+                {
+                    var input = Coordinates(Insignia);
+                    try
+                    {
+                        board.SetChoice(input, Insignia);
+                        choiceIsValid = true;
+                    }
+                    catch (OverridingException ex)
+                    {
+                        _console.WriteLine("Try another position. " + ex.Message);
+                    }
+                }
+
                 var outcome = gameEvaluator.FindGameOutcome(board, Insignia.ToString());
                 _console.WriteLine(outcome.ToString());
                 if (outcome.Status == Status.Won)

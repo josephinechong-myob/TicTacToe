@@ -70,7 +70,7 @@ namespace TicTacToe_Test
             //act
             // var actualBoard = board.SetChoice(input, firstPlayer);
             var actualBoard = board.SetChoice(input, firstPlayer);
-            Assert.Throws<Exception>(() => board.SetChoice(input, secondPlayer));
+            Assert.Throws<OverridingException>(() => board.SetChoice(input, secondPlayer));
 
         //assert
             Assert.Equal(expectedBoard, actualBoard);
