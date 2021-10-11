@@ -42,12 +42,12 @@ namespace TicTacToe
         public string SetChoice(string coordinate, Enum insignia)
         {
             var index = coordinate.Split(",");
-            var first = Int32.Parse(index[0]);
-            var second = Int32.Parse(index[1]);
+            var x = Int32.Parse(index[0]);
+            var y = Int32.Parse(index[1]);
           
-            if (Cells[first][second] == ".") //while loop
+            if (Cells[y][x] == ".")
             { 
-                Cells[first][second] = insignia.ToString();
+                Cells[y][x] = insignia.ToString();
             }
             else
             {

@@ -37,5 +37,27 @@ namespace TicTacToe_Test
                 ), Times.Once
             );
         }
+        
+        [Fact]
+        public void Game_Should_End_If_Player_Enters_Q()
+        {
+            //assign
+            var mockConsole = new Mock<IConsole>();
+            var playerX = "q";
+
+            mockConsole.SetupSequence(m => m.ReadLine())
+                .Returns(playerX);
+
+            var game = new Game(mockConsole.Object);
+            //act
+            game.Run();
+            
+            //assert
+            mockConsole.Verify(
+                m=>m.WriteLine(
+                    It.Is<string>(s=>s==$"Player X has forfeit")
+                ), Times.Once
+            );
+        }
     }
 }
