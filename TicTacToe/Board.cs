@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 
 namespace TicTacToe
 {
@@ -39,7 +37,7 @@ namespace TicTacToe
             return boardString;
         }
 
-        public string SetChoice(string coordinate, Enum insignia)
+        public string SetPlayersCoordinates(string coordinate, Enum insignia)
         {
             var index = coordinate.Split(",");
             var x = Int32.Parse(index[0]);
@@ -55,7 +53,14 @@ namespace TicTacToe
             }
             return BoardToString();
         }
-        
+
+        public bool PositionIsTaken(string coordinate)
+        {
+            var index = coordinate.Split(",");
+            var x = Int32.Parse(index[0]);
+            var y = Int32.Parse(index[1]);
+            return Cells[y][x] != ".";
+        }
   
         public string[][] ResetBoard()
         {

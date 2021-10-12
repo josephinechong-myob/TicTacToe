@@ -31,7 +31,7 @@ namespace TicTacToe_Test
             var symbol = Insignia.O;
 
             //act
-            var actualBoard = board.SetChoice(input, symbol);
+            var actualBoard = board.SetPlayersCoordinates(input, symbol);
 
             //assert
             Assert.Equal(expectedBoard, actualBoard);
@@ -49,7 +49,7 @@ namespace TicTacToe_Test
             var symbol = Insignia.X;
 
             //act
-            var actualBoard = board.SetChoice(input, symbol);
+            var actualBoard = board.SetPlayersCoordinates(input, symbol);
 
             //assert
             Assert.Equal(expectedBoard, actualBoard);
@@ -69,8 +69,8 @@ namespace TicTacToe_Test
 
             //act
             // var actualBoard = board.SetChoice(input, firstPlayer);
-            var actualBoard = board.SetChoice(input, firstPlayer);
-            Assert.Throws<OverridingException>(() => board.SetChoice(input, secondPlayer));
+            var actualBoard = board.SetPlayersCoordinates(input, firstPlayer);
+            Assert.Throws<OverridingException>(() => board.SetPlayersCoordinates(input, secondPlayer));
 
         //assert
             Assert.Equal(expectedBoard, actualBoard);

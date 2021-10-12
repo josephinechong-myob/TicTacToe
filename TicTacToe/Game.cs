@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe
@@ -19,26 +18,22 @@ namespace TicTacToe
             _console.WriteLine("Welcome to Tic Tac Toe!");
         }
 
-        private string Coordinates(Enum insignia, string playerInput)
+        private string GetCoordinates(Enum insignia, string playerCoordinatesInput)
         {
-            bool positionIsValid = false;
-            var coordinate = playerInput;
-            while (!positionIsValid)
+            bool coordinatesAreValid = PlayerInputValidator.IsValidCoordinate(playerCoordinatesInput);
+            
+            while (!coordinatesAreValid)
             {
-                var pattern = new Regex(@"^[012],[012]$");
-                positionIsValid = pattern.IsMatch(coordinate);
-                if (!positionIsValid)
-                {
-                    _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
-                    coordinate = GetPlayerInput(insignia); 
-                }
+                _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
+                playerCoordinatesInput = GetPlayerInput(insignia); 
+                coordinatesAreValid = PlayerInputValidator.IsValidCoordinate(playerCoordinatesInput);
             }
-            return coordinate;
+            return playerCoordinatesInput;
         }
 
         private bool HasPlayerQuit(string playerInput)
         {
-            return playerInput == "q";
+            return playerInput == "q"; //game rule rather than validation
         }
 
         private string GetPlayerInput(Enum insignia)
@@ -48,23 +43,11 @@ namespace TicTacToe
             return _console.ReadLine();
         }
 
-        private void SetPlayersChoice(Board board, String playerInput)
+        private void SetPlayersCoordinates(Board board, String coordinates)
         {
-            bool choiceIsValid = false;
-            
-            while (!choiceIsValid)
-            {
-                var input = Coordinates(Insignia, playerInput);
-                try
-                {
-                    board.SetChoice(input, Insignia);
-                    choiceIsValid = true;
-                }
-                catch (OverridingException ex)
-                {
-                    _console.WriteLine("Try another position. " + ex.Message);
-                }
-            }
+       
+           
+            board.SetPlayersCoordinates(coordinates, Insignia);
         }
 
         private void Play(Board board)
@@ -76,14 +59,29 @@ namespace TicTacToe
             while (!winner && !draw)
             {
                 board.BoardStatus();
-                var playerInput = GetPlayerInput(Insignia);
-                if (HasPlayerQuit(playerInput))
+                var playerInput = string.Empty;//GetPlayerInput(Insignia);
+                while (!PlayerInputValidator.IsValidCoordinate(playerInput) && playerInput == string.Empty && board.PositionIsTaken(playerInput))
                 {
-                    //player has quit!
-                    _console.WriteLine($"Player {Insignia} has forfeit");
-                    return;
+                    playerInput = GetPlayerInput(Insignia);
+                    if (!PlayerInputValidator.IsValidCoordinate(playerInput))
+                    {
+                        //write statement you liked here
+                    }
+                    else if (board.PositionIsTaken(playerInput))
+                    {
+                        //write is taken statement here
+                    }
+                    
+                    if (HasPlayerQuit(playerInput))
+                    {
+                        //player has quit!
+                        _console.WriteLine($"Player {Insignia} has forfeit");
+                        return;
+                    }
+                    
                 }
-                SetPlayersChoice(board, playerInput);
+                
+                SetPlayersCoordinates(board, playerInput);
                 
                 var outcome = gameEvaluator.FindGameOutcome(board, Insignia.ToString());
                 _console.WriteLine(outcome.ToString());
