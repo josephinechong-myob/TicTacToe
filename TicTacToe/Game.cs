@@ -6,11 +6,13 @@ namespace TicTacToe
     {
         private Insignia Insignia { get; set; } 
         private readonly IConsole _console;
+        private readonly Board _board;
 
-        public Game(IConsole console)
+        public Game(IConsole console, Board board)
         {
             _console = console;
             Insignia = Insignia.X;
+            _board = board;
         }
         private void Greeting()
         {
@@ -42,9 +44,9 @@ namespace TicTacToe
             return _console.ReadLine();
         }
 
-        private void SetPlayersCoordinates(Board board, Coordinate coordinates)
+        private void SetPlayersCoordinates(Coordinate coordinates)
         {
-            board.SetPlayersCoordinates(coordinates, Insignia);
+            _board.SetPlayersCoordinates(coordinates, Insignia);
         }
 
         private string SelectPlayer(Insignia insignia)
@@ -52,7 +54,33 @@ namespace TicTacToe
             return (insignia.Equals(Insignia.X)) ? "Player 1": "Player 2";
         }
 
-        private void Play(Board board)
+        private Status MakePlayersMove() //Can we make board a private field of the class
+        {
+            var playerInput = string.Empty;
+            Coordinate.TryParse(playerInput, out var coordinate);
+            while (!PlayerInputValidator.IsValidCoordinate(playerInput) || (coordinate != null && _board.PositionIsTaken(coordinate)))
+            {
+                playerInput = GetPlayerInput(Insignia);
+                Coordinate.TryParse(playerInput, out coordinate);
+                if (!PlayerInputValidator.IsValidCoordinate(playerInput))
+                {
+                    _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
+                }
+                else if (_board.PositionIsTaken(coordinate))
+                {
+                    _console.WriteLine($"This position {playerInput} is already occupied");
+                }
+                if (HasPlayerQuit(playerInput))
+                {
+                    var player = SelectPlayer(Insignia);
+                    _console.WriteLine($"{player} has forfeit");
+                    return Status.Forfeit;
+                }
+            }
+            SetPlayersCoordinates(coordinate);
+            return Status.Ongoing;
+        }
+        private void Play()
         {
             var winner = false;
             var draw = false;
@@ -60,31 +88,13 @@ namespace TicTacToe
             
             while (!winner && !draw)
             {
-                board.BoardStatus();
-                var playerInput = string.Empty;
-                Coordinate.TryParse(playerInput, out var coordinate);
-                while (!PlayerInputValidator.IsValidCoordinate(playerInput) || (coordinate != null && board.PositionIsTaken(coordinate)))
+                _board.BoardStatus();
+                var status = MakePlayersMove();
+                if (status == Status.Forfeit)
                 {
-                    playerInput = GetPlayerInput(Insignia);
-                    Coordinate.TryParse(playerInput, out coordinate);
-                    if (!PlayerInputValidator.IsValidCoordinate(playerInput))
-                    {
-                        _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
-                    }
-                    else if (board.PositionIsTaken(coordinate))
-                    {
-                        _console.WriteLine($"This position {playerInput} is already occupied");
-                    }
-                    if (HasPlayerQuit(playerInput))
-                    {
-                        var player = SelectPlayer(Insignia);
-                        _console.WriteLine($"{player} has forfeit");
-                        return;
-                    }
+                    return;
                 }
-                
-                SetPlayersCoordinates(board, coordinate);
-                var outcome = gameEvaluator.FindGameOutcome(board, Insignia.ToString());
+                var outcome = gameEvaluator.FindGameOutcome(_board, Insignia.ToString());
                 _console.WriteLine(outcome.ToString());
                 
                 if (outcome.Status == Status.Won)
@@ -108,10 +118,8 @@ namespace TicTacToe
 
         public void Run()
         {
-            var board = new Board(_console);
-            
             Greeting();
-            Play(board);
+            Play();
         }
     }
 }

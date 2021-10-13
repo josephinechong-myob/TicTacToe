@@ -27,11 +27,12 @@ namespace TicTacToe_Test
             var console = new GameConsole();
             var board = new Board(console);
             var expectedBoard = $"O . . \n. . . \n. . . \n";
-            var input = "0,0";
+            var coordinate = new Coordinate(0, 0);
             var symbol = Insignia.O;
 
             //act
-            var actualBoard = board.SetPlayersCoordinates(input, symbol);
+            
+            var actualBoard = board.SetPlayersCoordinates(coordinate, symbol);
 
             //assert
             Assert.Equal(expectedBoard, actualBoard);
@@ -45,11 +46,11 @@ namespace TicTacToe_Test
             var console = new GameConsole();
             var board = new Board(console);
             var expectedBoard = $"X . . \n. . . \n. . . \n";
-            var input = "0,0";
+            var coordinate = new Coordinate(0, 0);
             var symbol = Insignia.X;
 
             //act
-            var actualBoard = board.SetPlayersCoordinates(input, symbol);
+            var actualBoard = board.SetPlayersCoordinates(coordinate, symbol);
 
             //assert
             Assert.Equal(expectedBoard, actualBoard);
@@ -63,14 +64,14 @@ namespace TicTacToe_Test
             var console = new GameConsole();
             var board = new Board(console);
             var expectedBoard = $"X . . \n. . . \n. . . \n";
-            var input = "0,0";
+            var coordinate = new Coordinate(0, 0);
             var firstPlayer = Insignia.X;
             var secondPlayer = Insignia.O;
 
             //act
             // var actualBoard = board.SetChoice(input, firstPlayer);
-            var actualBoard = board.SetPlayersCoordinates(input, firstPlayer);
-            Assert.Throws<OverridingException>(() => board.SetPlayersCoordinates(input, secondPlayer));
+            var actualBoard = board.SetPlayersCoordinates(coordinate, firstPlayer);
+            Assert.Throws<OverridingException>(() => board.SetPlayersCoordinates(coordinate, secondPlayer));
 
         //assert
             Assert.Equal(expectedBoard, actualBoard);
