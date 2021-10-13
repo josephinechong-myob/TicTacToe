@@ -6,7 +6,7 @@ namespace TicTacToe
     {
         public static bool IsValidCoordinate(string playerInput)
         {
-            var pattern = new Regex(@"^[012],[012]$");
+            var pattern = new Regex(@"^[123],[123]$");
             var positionIsValid = pattern.IsMatch(playerInput);
             return positionIsValid;
         }

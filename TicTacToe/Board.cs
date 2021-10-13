@@ -36,16 +36,12 @@ namespace TicTacToe
             }
             return boardString;
         }
-
-        public string SetPlayersCoordinates(string coordinate, Enum insignia)
+        
+        public string SetPlayersCoordinates(Coordinate coordinate, Enum insignia)
         {
-            var index = coordinate.Split(",");
-            var x = Int32.Parse(index[0]);
-            var y = Int32.Parse(index[1]);
-          
-            if (Cells[y][x] == ".")
+            if (Cells[coordinate.Y][coordinate.X] == ".")
             { 
-                Cells[y][x] = insignia.ToString();
+                Cells[coordinate.Y][coordinate.X] = insignia.ToString();
             }
             else
             {
@@ -54,12 +50,9 @@ namespace TicTacToe
             return BoardToString();
         }
 
-        public bool PositionIsTaken(string coordinate)
+        public bool PositionIsTaken(Coordinate coordinate)
         {
-            var index = coordinate.Split(",");
-            var x = Int32.Parse(index[0]);
-            var y = Int32.Parse(index[1]);
-            return Cells[y][x] != ".";
+            return Cells[coordinate.Y][coordinate.X] != ".";
         }
   
         public string[][] ResetBoard()
@@ -80,8 +73,5 @@ namespace TicTacToe
             _console.WriteLine(text);
             _console.WriteLine(BoardToString());
         }
-
-        //always 2 players always be O or X based on player
-        // expriment - playable product in program - to run
     }
 }

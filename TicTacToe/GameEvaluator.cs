@@ -99,7 +99,6 @@ namespace TicTacToe
             
             if (ThereIsADiagonalWin(cells, insignia)) //O = 1 time complexity Best case
             {
-                //Insignia insig;
                 if (Insignia.TryParse(insignia, out insig))
                 {
                     return new GameOutcome
@@ -118,7 +117,6 @@ namespace TicTacToe
             {
                 if (cells[y][0] == cells[y][1] && cells[y][1] == cells[y][2] && cells[y][0] == insignia) //horizontal win
                 {
-                    //Insignia insig;
                     if (Insignia.TryParse(insignia, out insig))
                     {
                         return new GameOutcome
@@ -138,7 +136,6 @@ namespace TicTacToe
             {
                 if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
                 {
-                    //Insignia insig;
                     if (Insignia.TryParse(insignia, out insig))
                     {
                         return new GameOutcome
@@ -162,11 +159,7 @@ namespace TicTacToe
                 };  
               
             }
-            /*else if(!stillPlaying && !IsItADraw(cells)){outcome = $"There is a {Status.Forfeit}";}*/
-            
-            //return outcome;
-            //return Status.Ongoing;
-            
+
             return new GameOutcome
             {
                 Status = Status.Ongoing,
