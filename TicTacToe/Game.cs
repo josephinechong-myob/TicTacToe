@@ -60,16 +60,18 @@ namespace TicTacToe
             {
                 board.BoardStatus();
                 var playerInput = string.Empty;//GetPlayerInput(Insignia);
-                while (!PlayerInputValidator.IsValidCoordinate(playerInput) && playerInput == string.Empty && board.PositionIsTaken(playerInput))
+                while (!PlayerInputValidator.IsValidCoordinate(playerInput) || board.PositionIsTaken(playerInput))
                 {
                     playerInput = GetPlayerInput(Insignia);
                     if (!PlayerInputValidator.IsValidCoordinate(playerInput))
                     {
                         //write statement you liked here
+                        _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
                     }
                     else if (board.PositionIsTaken(playerInput))
                     {
                         //write is taken statement here
+                        _console.WriteLine($"This position {playerInput} is already occupied");
                     }
                     
                     if (HasPlayerQuit(playerInput))
