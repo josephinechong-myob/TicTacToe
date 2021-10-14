@@ -169,8 +169,6 @@ namespace TicTacToe
               
             }
             
-            
-
             return new GameOutcome
             {
                 Status = Status.Ongoing,

@@ -61,5 +61,57 @@ namespace TicTacToe_Test
                 ), Times.Once
             );
         }
+
+        [Fact]
+        public void Player_Should_Encounter_Prompt_When_Entering_Existing_Coordinate()
+        {
+            //assign
+            var mockConsole = new Mock<IConsole>();
+            var playerXFirstPosition = "1,1";
+            var playerOFirstPosition = "1,1";
+            
+            mockConsole.SetupSequence(m => m.ReadLine())
+                .Returns(playerXFirstPosition)
+                .Returns(playerOFirstPosition)
+                .Returns("q");
+
+            var board = new Board(mockConsole.Object);
+            var game = new Game(mockConsole.Object, board);
+            
+            //act
+            game.Run();
+            
+            //assert
+            mockConsole.Verify(
+                m => m.WriteLine(
+                    It.Is<string>(s => s == $"This position 1,1 is already occupied")
+                ), Times.Once
+            );
+        }
+        
+        [Fact]
+        public void Player_Should_Encounter_Input_Format_Prompt_When_Entering_Invalid_Input()
+        {
+            //assign
+            var mockConsole = new Mock<IConsole>();
+            var playerXFirstPosition = "a,a";
+
+            mockConsole.SetupSequence(m => m.ReadLine())
+                .Returns(playerXFirstPosition)
+                .Returns("q");
+
+            var board = new Board(mockConsole.Object);
+            var game = new Game(mockConsole.Object, board);
+            
+            //act
+            game.Run();
+            
+            //assert
+            mockConsole.Verify(
+                m => m.WriteLine(
+                    It.Is<string>(s => s == $"Please enter a coord with the format x,y. With x and y being a single digit")
+                ), Times.Once
+            );
+        }
     }
 }
