@@ -91,7 +91,7 @@ namespace TicTacToe
         }*/
         
         
-        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
+        public GameOutcome FindGameOutcome(Board board, string insignia, bool playerHasQuit) //for loop (Big O (n= time units) everything*)
         {
             var cells = board.Cells;
             var outcome = _inProgress;
@@ -156,6 +156,15 @@ namespace TicTacToe
                 return new GameOutcome
                 {
                     Status = Status.Draw,
+                };  
+              
+            }
+            
+            if (playerHasQuit)
+            {
+                return new GameOutcome
+                {
+                    Status = Status.Forfeit,
                 };  
               
             }
