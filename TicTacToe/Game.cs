@@ -1,5 +1,3 @@
-using System;
-
 namespace TicTacToe
 {
     public class Game
@@ -29,38 +27,36 @@ namespace TicTacToe
         
         private void Play()
         {
-            var winner = false;
-            var draw = false;
+            var gameCompleted = false;
             var gameEvaluator = new GameEvaluator();
             
-            while (!winner && !draw)
+            while (!gameCompleted)
             {
                 _board.BoardStatus();
-                var playersMove = PlayersMove();
-                var outcome = gameEvaluator.FindGameOutcome(_board, Insignia.ToString(), playersMove);
-                _console.WriteLine(outcome.ToString());
-                
-                switch (outcome.Status)
+                var moveStatus = MakePlayersMove();
+                if (moveStatus == Status.Forfeit)
                 {
-                    case Status.Forfeit:
-                        return;
-                    case Status.Won:
-                        winner = true;
-                        break;
-                    case Status.Draw:
-                        draw = true;
-                        break;
+                    return;
                 }
-
+                var outcome = gameEvaluator.FindGameOutcome(_board, Insignia.ToString());
+                _console.WriteLine(outcome.ToString());
+                gameCompleted = HasGameCompleted(outcome);
                 MakeTurns(Insignia.ToString());
             }
         }
+
+        private bool HasGameCompleted(GameOutcome outcome)
+        {
+            return outcome.Status == Status.Won || outcome.Status == Status.Draw;
+        }
         
         //private Status MakePlayersMove() //refactor? make game validator, L49 take bool logic out
-        private bool PlayersMove()
+        private Status MakePlayersMove()
         {
             var playerInput = string.Empty;
+            
             Coordinate.TryParse(playerInput, out var coordinate);
+
             while (!PlayerInputValidator.IsValidCoordinate(playerInput) || (coordinate != null && _board.PositionIsTaken(coordinate)))
             {
                 playerInput = GetPlayerInput(Insignia);
@@ -77,13 +73,13 @@ namespace TicTacToe
                 {
                     var player = SelectPlayer(Insignia);
                     _console.WriteLine($"{player} has forfeit");
-                    //return Status.Forfeit;
-                    return true;
+                    return Status.Forfeit;
+                    //return true;
                 }
             }
             SetPlayersCoordinates(coordinate); //setting position on board & checking if player has quit & wrong input & exisitng position
-            //return Status.Ongoing;
-            return false;
+            return Status.Ongoing;
+            //return false;
         }
         
         private string GetPlayerInput(Insignia insignia)

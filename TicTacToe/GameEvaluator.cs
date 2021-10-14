@@ -91,11 +91,20 @@ namespace TicTacToe
         }*/
         
         
-        public GameOutcome FindGameOutcome(Board board, string insignia, bool playerHasQuit) //for loop (Big O (n= time units) everything*)
+        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
         {
             var cells = board.Cells;
             var outcome = _inProgress;
             Insignia insig;
+            
+            // if (playerHasQuit) // possibly not clean code as passing in a boolean to return a value - passing flag arguments
+            // {
+            //     return new GameOutcome
+            //     {
+            //         Status = Status.Forfeit,
+            //     };  
+            //   
+            // }
             
             if (ThereIsADiagonalWin(cells, insignia)) //O = 1 time complexity Best case
             {
@@ -160,14 +169,7 @@ namespace TicTacToe
               
             }
             
-            if (playerHasQuit)
-            {
-                return new GameOutcome
-                {
-                    Status = Status.Forfeit,
-                };  
-              
-            }
+            
 
             return new GameOutcome
             {
