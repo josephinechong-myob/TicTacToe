@@ -11,12 +11,12 @@ namespace TicTacToe_Test
         {
             //assign
             var mockConsole = new Mock<IConsole>();
-            var playerXFirstPosition = "0,0";
-            var playerXSecondPosition = "0,1";
-            var playerXThirdPosition = "0,2";
-            var playerOFirstPosition = "1,0";
-            var playerOSecondPosition = "2,1";
-            var playerOThirdPosition = "2,2";
+            var playerXFirstPosition = "1,1";
+            var playerXSecondPosition = "1,2";
+            var playerXThirdPosition = "1,3";
+            var playerOFirstPosition = "2,1";
+            var playerOSecondPosition = "3,2";
+            var playerOThirdPosition = "3,3";
 
             mockConsole.SetupSequence(m => m.ReadLine())
                 .Returns(playerXFirstPosition)
@@ -26,7 +26,8 @@ namespace TicTacToe_Test
                 .Returns(playerXThirdPosition)
                 .Returns(playerOThirdPosition);
 
-            var game = new Game(mockConsole.Object);
+            var board = new Board(mockConsole.Object);
+            var game = new Game(mockConsole.Object, board);
             //act
             game.Run();
             
@@ -48,14 +49,15 @@ namespace TicTacToe_Test
             mockConsole.SetupSequence(m => m.ReadLine())
                 .Returns(playerX);
 
-            var game = new Game(mockConsole.Object);
+            var board = new Board(mockConsole.Object);
+            var game = new Game(mockConsole.Object, board);
             //act
             game.Run();
             
             //assert
             mockConsole.Verify(
                 m=>m.WriteLine(
-                    It.Is<string>(s=>s==$"Player X has forfeit")
+                    It.Is<string>(s=>s==$"Player 1 has forfeit")
                 ), Times.Once
             );
         }
