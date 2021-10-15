@@ -42,36 +42,67 @@ namespace TicTacToe
             return playerInput == "q"; //game rule rather than validation
         }
 
-        private bool CoordinateIsValid(string playerInput, Coordinate coordinate)
+        private CoordinateValidationResult CoordinateIsValid(string playerInput)
         {
-            return !PlayerInputValidator.IsValidCoordinate(playerInput) || coordinate != null && _board.PositionIsTaken(coordinate);
+            Coordinate.TryParse(playerInput, out var coordinate);
+            
+            if (!PlayerInputValidator.IsValidCoordinate(playerInput))
+            {
+                return CoordinateValidationResult.BadCoordinateFormat;
+            }
+
+            if (coordinate != null && _board.PositionIsTaken(coordinate))
+            {
+                return CoordinateValidationResult.CoordinateIsOccupied;
+            }
+
+            return CoordinateValidationResult.Valid;
+        }
+
+        private void PrintValidationStatement(CoordinateValidationResult validationResult, string playerInput)
+        {
+            switch (validationResult)
+            {
+                case CoordinateValidationResult.BadCoordinateFormat:
+                    _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
+                    break;
+                case CoordinateValidationResult.CoordinateIsOccupied:
+                    _console.WriteLine($"This position {playerInput} is already occupied");
+                    break;
+            } 
         }
         
         private Status MakePlayersMove()
         {
             var playerInput = string.Empty;
             Coordinate.TryParse(playerInput, out var coordinate);
+            // for (var validationResult = CoordinateIsValid(playerInput, coordinate);
+            //     validationResult != CoordinateValidationResult.Valid; 
+            //     validationResult = CoordinateIsValid(playerInput, coordinate))
+            // {
+            //     
+            // }
 
-            while (CoordinateIsValid(playerInput, coordinate))
+            var validationResult = CoordinateIsValid(playerInput);
+            while ( validationResult != CoordinateValidationResult.Valid)
             {
                 playerInput = GetPlayerInput(Insignia);
+                
+                validationResult = CoordinateIsValid(playerInput);
+                
                 if (HasPlayerQuit(playerInput))
                 {
                     var player = SelectPlayer(Insignia);
                     _console.WriteLine($"{player} has forfeit");
                     return Status.Forfeit;
                 }
+                
                 Coordinate.TryParse(playerInput, out coordinate);
-                if (!PlayerInputValidator.IsValidCoordinate(playerInput))
-                {
-                    _console.WriteLine("Please enter a coord with the format x,y. With x and y being a single digit");
-                }
-                else if (_board.PositionIsTaken(coordinate))
-                {
-                    _console.WriteLine($"This position {playerInput} is already occupied");
-                }
+                
+                PrintValidationStatement(validationResult, playerInput);
             }
             SetPlayersCoordinates(coordinate);
+            
             return Status.Ongoing;
         }
         
