@@ -4,6 +4,31 @@ namespace TicTacToe
     {
         public Status Status;
         public Insignia? Winner;
+
+        public static GameOutcome WithWinner(Insignia winner)
+        {
+            return new GameOutcome
+            {
+                Status = Status.Won,
+                Winner = winner
+            };
+        }
+
+        public static GameOutcome Draw()
+        {
+            return new GameOutcome()
+            {
+                Status = Status.Draw,
+            };
+        }
+        
+        public static GameOutcome Ongoing()
+        {
+            return new GameOutcome()
+            {
+                Status = Status.Ongoing,
+            };
+        }
         
         public override string ToString()
         {

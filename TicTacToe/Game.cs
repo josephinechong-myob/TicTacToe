@@ -39,9 +39,9 @@ namespace TicTacToe
         
         private bool HasPlayerQuit(string playerInput)
         {
-            return playerInput == "q"; //game rule rather than validation
+            return playerInput == "q"; 
         }
-
+        
         private CoordinateValidationResult CoordinateIsValid(string playerInput)
         {
             Coordinate.TryParse(playerInput, out var coordinate);
@@ -71,38 +71,35 @@ namespace TicTacToe
                     break;
             } 
         }
+
+        private void PrintPlayerHasForfeit()
+        {
+            var player = SelectPlayer(Insignia);
+            _console.WriteLine($"{player} has forfeit");
+        }
         
         private Status MakePlayersMove()
         {
             var playerInput = string.Empty;
             Coordinate.TryParse(playerInput, out var coordinate);
-            // for (var validationResult = CoordinateIsValid(playerInput, coordinate);
-            //     validationResult != CoordinateValidationResult.Valid; 
-            //     validationResult = CoordinateIsValid(playerInput, coordinate))
-            // {
-            //     
-            // }
-
             var validationResult = CoordinateIsValid(playerInput);
-            while ( validationResult != CoordinateValidationResult.Valid)
+            
+            while (validationResult != CoordinateValidationResult.Valid)
             {
                 playerInput = GetPlayerInput(Insignia);
-                
                 validationResult = CoordinateIsValid(playerInput);
                 
                 if (HasPlayerQuit(playerInput))
                 {
-                    var player = SelectPlayer(Insignia);
-                    _console.WriteLine($"{player} has forfeit");
+                    PrintPlayerHasForfeit();
                     return Status.Forfeit;
                 }
                 
                 Coordinate.TryParse(playerInput, out coordinate);
-                
                 PrintValidationStatement(validationResult, playerInput);
             }
-            SetPlayersCoordinates(coordinate);
             
+            SetPlayersCoordinates(coordinate);
             return Status.Ongoing;
         }
         
