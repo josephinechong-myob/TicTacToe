@@ -22,17 +22,16 @@ namespace TicTacToe_Test
         {
             //assign
             var console = new GameConsole();
-            var board = new Board(console);
+            var board = new Board(cells, console);
             var insignia = "X";
             var evaluator = new GameEvaluator();
-            //var expectedOutcome = "X-Player has Won";
-            var expectedOutcome = Status.Won;
+            var expectedOutcome = GameOutcome.WithWinner(Insignia.X);
 
             //act
             var actualOutcome = evaluator.FindGameOutcome(board,insignia);
 
             //assert
-           // Assert.Equal(expectedOutcome, actualOutcome);
+           Assert.Equal(expectedOutcome.ToString(), actualOutcome.ToString());
         }
         
         [Theory]
@@ -46,18 +45,16 @@ namespace TicTacToe_Test
         {
             //assign
             var console = new GameConsole();
-            var board = new Board(console);
-            //var board = new Board(cells);
+            var board = new Board(cells, console);
             var insignia = "X";
             var evaluator = new GameEvaluator();
-            //var expectedOutcome = "Game is Ongoing";
-            var expectedOutcome = Status.Ongoing;
+            var expectedOutcome = GameOutcome.Ongoing();
 
             //act
             var actualOutcome = evaluator.FindGameOutcome(board, insignia);
 
             //assert
-            //Assert.Equal(expectedOutcome, actualOutcome);
+            Assert.Equal(expectedOutcome.ToString(), actualOutcome.ToString());
         }
         
         [Theory]
