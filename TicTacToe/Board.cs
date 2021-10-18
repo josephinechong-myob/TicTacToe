@@ -39,31 +39,6 @@ namespace TicTacToe
         
         public string SetPlayersCoordinates(Coordinate coordinate, Enum insignia)
         {
-            // if (Cells[coordinate.Y][coordinate.X] == ".")
-            // { 
-            //     Cells[coordinate.Y][coordinate.X] = insignia.ToString();
-            // }
-            // else
-            // {
-            //     _console.WriteLine(string.Format("This position {0},{1} is already occupied", coordinate.Y + 1, coordinate.X + 1));
-            // }
-            // return BoardToString();
-            
-                // if (Cells[coordinate.Y][coordinate.X] == ".")
-                // {
-                //     try
-                //     {
-                //         Cells[coordinate.Y][coordinate.X] = insignia.ToString();
-                //     }
-                //     catch(OverridingException)
-                //     {
-                //         _console.WriteLine(string.Format($"This position {0} is already occupied", coordinate));
-                //        // throw new OverridingException(string.Format("This position {0} is already occupied", coordinate));
-                //     }
-                // }
-                // return BoardToString();
-                
-                
             if (Cells[coordinate.Y][coordinate.X] == ".")
             { 
                 Cells[coordinate.Y][coordinate.X] = insignia.ToString();

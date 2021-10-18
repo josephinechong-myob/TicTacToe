@@ -7,6 +7,31 @@ namespace TicTacToe
     {
         private readonly string _inProgress = $"Game is {Status.Ongoing}";
         
+        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
+        {
+            var cells = board.Cells;
+            Insignia insig;
+
+            if (ThereIsAWin(cells, insignia) && Insignia.TryParse(insignia, out insig))
+            {
+                return GameOutcome.WithWinner(insig);
+            }
+            
+            if (ThereIsADraw(cells))
+            {
+                return GameOutcome.Draw();
+            }
+            
+            return GameOutcome.Ongoing();  
+           
+        }
+
+        /*private bool IsThereAFastWin(string[][] cells,string insignia)
+        {
+            return (cells[0][0] == insignia && cells[0][1] = insignia && cells[0][2]) && (cells[0][0] == insignia && cells[1][1] == insignia && cells[2][2] == insignia)
+            
+        }*/
+        
         private bool ThereIsALeftToRightDiagonalWin(string[][] cells, int x, int y, string insignia)
         {
             if (cells[y][x] == cells[y + 1][x + 1] && cells[y + 1][x + 1] == cells[y + 2][x + 2] &&
@@ -52,7 +77,7 @@ namespace TicTacToe
 
         private bool ThereIsAVerticalWin(string[][] cells, string insignia)
         {
-            for (int x = 0; x < cells.Length; x++) // vertical win (overall time complexity 2n vs n^2/n*k) try not to use y and x as it could be related t coordinates
+            for (int x = 0; x < cells.Length; x++) // (overall time complexity 2n vs n^2/n*k) try not to use y and x as it could be related t coordinates
             {
                 if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
                 {
@@ -72,30 +97,5 @@ namespace TicTacToe
         {
             return !cells.Any(s => s.Contains("."));
         }
-        
-        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
-        {
-            var cells = board.Cells;
-            Insignia insig;
-
-            if (ThereIsAWin(cells, insignia) && Insignia.TryParse(insignia, out insig))
-            {
-                return GameOutcome.WithWinner(insig);
-            }
-            
-            if (ThereIsADraw(cells))
-            {
-                return GameOutcome.Draw();
-            }
-            
-            return GameOutcome.Ongoing();  
-           
-        }
-
-        /*private bool IsThereAFastWin(string[][] cells,string insignia)
-        {
-            return (cells[0][0] == insignia && cells[0][1] = insignia && cells[0][2]) && (cells[0][0] == insignia && cells[1][1] == insignia && cells[2][2] == insignia)
-            
-        }*/
     }
 }
