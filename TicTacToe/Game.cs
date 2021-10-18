@@ -3,6 +3,7 @@ namespace TicTacToe
     public class Game
     {
         //dependency injection of the console and board
+        // continue game option when one game is finished
         private Insignia Insignia { get; set; } 
         private readonly IConsole _console;
         private readonly Board _board;
