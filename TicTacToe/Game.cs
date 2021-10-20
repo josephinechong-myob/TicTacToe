@@ -2,6 +2,7 @@ namespace TicTacToe
 {
     public class Game
     {
+        private bool _hasPlayerQuit;
         //dependency injection of the console and board
         // continue game option when one game is finished
         private Insignia Insignia { get; set; } 
@@ -13,6 +14,7 @@ namespace TicTacToe
             _console = console;
             Insignia = Insignia.X;
             _board = board;
+            _hasPlayerQuit = false;
         }
         
         public void Run()
@@ -20,11 +22,28 @@ namespace TicTacToe
             Greeting();
             Play();
         }
-        
+
         private void Greeting()
         {
             _console.WriteLine("Welcome to Tic Tac Toe!");
         }
+
+        public bool PlayerWantsToPlayAgain()
+        {
+            if (_hasPlayerQuit)
+            {
+                return false;
+            }
+            
+            _console.WriteLine("Do you want to play again? Yes - 1, No - 0");
+            var input = _console.ReadLine();
+            if (input == "1")
+            {
+                return true;
+            }
+            return false;
+        }
+        
         
         private string GetPlayerInput(Insignia insignia)
         {
@@ -108,7 +127,7 @@ namespace TicTacToe
         {
             Insignia = (insignia == "X") ? Insignia.O : Insignia.X;
         }
-        
+
         private void Play()
         {
             var gameCompleted = false;
@@ -120,6 +139,7 @@ namespace TicTacToe
                 var moveStatus = MakePlayersMove();
                 if (moveStatus == Status.Forfeit)
                 {
+                    _hasPlayerQuit = true;
                     return;
                 }
                 var outcome = gameEvaluator.FindGameOutcome(_board, Insignia.ToString());

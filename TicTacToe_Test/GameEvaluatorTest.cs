@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TicTacToe;
@@ -83,30 +84,6 @@ namespace TicTacToe_Test
             Assert.Equal(expectedOutcome.ToString(), actualOutcome.ToString());
         }
         
-        /*[Theory]
-        [InlineData(
-            new[]{"X", ".", "X"}, 
-            new[]{"O", "O", "X"}, 
-            new[]{"X", ".", "O"})]
-        [InlineData(
-            new[]{"X", "O", "."}, 
-            new[]{".", "X", "."}, 
-            new[]{"O", "X", "O"})]
-        
-        public void Forfeit_Should_Be_Printed_If_Game_Is_Ongoing_And_Player_Quits(params string[][] cells)
-        {
-            //assign
-            var board = new Board(cells);
-            var insignia = "X";
-            var evaluator = new GameEvaluator();
-            var expectedOutcome = "There is a Forfeit";
-
-            //act
-            var actualOutcome = evaluator.GameOutcome(board, insignia);
-
-            //assert
-            Assert.Equal(expectedOutcome, actualOutcome);
-        }*/
         private class PossibleBoardOutcomes : IEnumerable<object[]> //classData Enumerator
         {
             public IEnumerator<object[]> GetEnumerator()
