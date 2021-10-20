@@ -7,6 +7,59 @@ namespace TicTacToe_Test
     public class GameTest
     {
         [Fact]
+        public void PlayerX_Should_Be_Able_To_Play_Again_After_Game_Finishes()
+        {
+            //assign
+            var mockConsole = new Mock<IConsole>();
+            var playerXFirstPosition = "1,1";
+            var playerXSecondPosition = "1,2";
+            var playerXThirdPosition = "1,3";
+            var playerOFirstPosition = "2,1";
+            var playerOSecondPosition = "3,2";
+            var playerOThirdPosition = "1";
+            var playerOFourthPosition = "1,1";
+            var playerXFourthPosition = "q";
+
+            mockConsole.SetupSequence(m => m.ReadLine())
+                .Returns(playerXFirstPosition)
+                .Returns(playerOFirstPosition)
+                .Returns(playerXSecondPosition)
+                .Returns(playerOSecondPosition)
+                .Returns(playerXThirdPosition)
+                .Returns(playerOThirdPosition)
+                .Returns(playerOFourthPosition)
+                .Returns(playerXFourthPosition);
+            
+            var board = new Board(mockConsole.Object);
+            var game = new Game(mockConsole.Object, board);
+            
+            //act
+            while (game.PlayerWantsToPlayAgain()) //while loop should not be in the test
+            {
+                board.ResetBoard();
+                game = new Game(mockConsole.Object, board);
+                game.Run();
+            }
+            
+            //assert
+            mockConsole.Verify(
+                m=>m.WriteLine(
+                    It.Is<string>(s=>s==$"X-Player has won")
+                ), Times.Once
+            );
+            mockConsole.Verify(
+                m=>m.WriteLine(
+                    It.Is<string>(s=>s==$"Do you want to play again? Yes - 1, No - 0")
+                ), Times.Once
+            );
+            mockConsole.Verify(
+                m=>m.WriteLine(
+                    It.Is<string>(s=>s==$"Player 1 has forfeit")
+                ), Times.Once
+            );
+        }
+        
+        [Fact]
         public void PlayerX_Should_Win_If_Winning_Pattern_Achieved()
         {
             //assign

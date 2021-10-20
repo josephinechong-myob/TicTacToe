@@ -4,7 +4,7 @@ namespace TicTacToe
     {
         private bool _hasPlayerQuit;
         //dependency injection of the console and board
-        // continue game option when one game is finished
+        //after game 
         private Insignia Insignia { get; set; } 
         private readonly IConsole _console;
         private readonly Board _board;
@@ -34,8 +34,13 @@ namespace TicTacToe
             {
                 return false;
             }
-            
+
+            if (_board.IsANewGame())
+            {
+                return true;
+            }
             _console.WriteLine("Do you want to play again? Yes - 1, No - 0");
+            
             var input = _console.ReadLine();
             if (input == "1")
             {
