@@ -34,12 +34,7 @@ namespace TicTacToe_Test
             var game = new Game(mockConsole.Object, board);
             
             //act
-            while (game.PlayerWantsToPlayAgain()) //while loop should not be in the test
-            {
-                board.ResetBoard();
-                game = new Game(mockConsole.Object, board);
-                game.Run();
-            }
+            game.Run();
             
             //assert
             mockConsole.Verify(
@@ -49,12 +44,12 @@ namespace TicTacToe_Test
             );
             mockConsole.Verify(
                 m=>m.WriteLine(
-                    It.Is<string>(s=>s==$"Do you want to play again? Yes - 1, No - 0")
+                    It.Is<string>(s=>s==$"Do you want to play again?")
                 ), Times.Once
             );
             mockConsole.Verify(
                 m=>m.WriteLine(
-                    It.Is<string>(s=>s==$"Player 1 has forfeit")
+                    It.Is<string>(s=>s==$"Player 2 has forfeit")
                 ), Times.Once
             );
         }
@@ -67,6 +62,7 @@ namespace TicTacToe_Test
             var playerXFirstPosition = "1,1";
             var playerXSecondPosition = "1,2";
             var playerXThirdPosition = "1,3";
+            var playerXFourthPosition = "0";
             var playerOFirstPosition = "2,1";
             var playerOSecondPosition = "3,2";
             var playerOThirdPosition = "3,3";
@@ -77,7 +73,8 @@ namespace TicTacToe_Test
                 .Returns(playerXSecondPosition)
                 .Returns(playerOSecondPosition)
                 .Returns(playerXThirdPosition)
-                .Returns(playerOThirdPosition);
+                .Returns(playerOThirdPosition)
+                .Returns(playerXFourthPosition);
 
             var board = new Board(mockConsole.Object);
             var game = new Game(mockConsole.Object, board);

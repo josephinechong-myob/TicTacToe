@@ -6,7 +6,6 @@ namespace TicTacToe
     {
         private bool _hasPlayerQuit;
         //dependency injection of the console and board
-        //after game 
         private Insignia Insignia { get; set; } 
         private readonly IConsole _console;
         private readonly Board _board;
@@ -21,8 +20,18 @@ namespace TicTacToe
         
         public void Run()
         {
-            Greeting();
-            Play();
+            while(PlayerWantsToPlayAgain())
+            {
+                ResetGame();
+                Greeting();
+                Play();
+            }
+        }
+
+        private void ResetGame()
+        {
+            _board.ResetBoard();
+            Insignia = Insignia.X;
         }
 
         private void Greeting()
@@ -56,7 +65,6 @@ namespace TicTacToe
             }
             return false;
         }
-        
         
         private string GetPlayerInput(Insignia insignia)
         {
