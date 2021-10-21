@@ -3,14 +3,14 @@ namespace TicTacToe
     public class GameOutcome
     {
         public Status Status;
-        public Insignia? Winner;
+        private Insignia? _winner;
 
         public static GameOutcome WithWinner(Insignia winner)
         {
             return new GameOutcome
             {
                 Status = Status.Won,
-                Winner = winner
+                _winner = winner
             };
         }
 
@@ -32,22 +32,22 @@ namespace TicTacToe
         
         public override string ToString()
         {
-            if (Winner != null)
+            if (_winner != null)
             {
-                return $"{Winner.ToString()}-Player has won";  
+                return $"{_winner.ToString()}-Player has won";  
             }
-            else if (Status == Status.Draw)
+
+            if (Status == Status.Draw)
             {
                 return "There is a tie";  
             }
-            else if (Status == Status.Ongoing)
+
+            if (Status == Status.Ongoing)
             {
                 return "Game is in progress";  
             }
-            else
-            {
-                return "It's a forfeit";  
-            }
+            
+            return "It's a forfeit";
         }
     }
 }

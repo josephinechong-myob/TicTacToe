@@ -8,7 +8,6 @@ namespace TicTacToe_Test
 {
     public class GameEvaluatorTest
     {
-        
         [Theory]
         //[ClassData(typeof(PossibleBoardOutcomes))]
         [InlineData(new[]{"X", ".", "."}, new[]{"X", ".", "."}, new[]{"X", ".", "."})]

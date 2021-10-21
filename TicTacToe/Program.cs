@@ -2,21 +2,15 @@
 
 namespace TicTacToe
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             var console = new GameConsole();
             var board = new Board(console);
             var game = new Game(console, board);
             
             game.Run();
-            // while (game.PlayerWantsToPlayAgain())
-            // {
-            //     board.ResetBoard();
-            //     game = new Game(console, board);
-            //     game.Run();
-            // }
         }
     }
 }

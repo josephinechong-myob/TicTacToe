@@ -17,7 +17,5 @@ namespace TicTacToe
             var optionIsValid = pattern.IsMatch(playerInput);
             return optionIsValid;
         }
-        //invalid throw an exception
-        
     }
 }

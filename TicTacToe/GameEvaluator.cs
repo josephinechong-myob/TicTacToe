@@ -6,7 +6,7 @@ namespace TicTacToe
     {
         private readonly string _inProgress = $"Game is {Status.Ongoing}";
         
-        public GameOutcome FindGameOutcome(Board board, string insignia) //for loop (Big O (n= time units) everything*)
+        public GameOutcome FindGameOutcome(Board board, string insignia)
         {
             var cells = board.Cells;
             Insignia insig;
@@ -24,12 +24,6 @@ namespace TicTacToe
             return GameOutcome.Ongoing();  
            
         }
-
-        /*private bool IsThereAFastWin(string[][] cells,string insignia)
-        {
-            return (cells[0][0] == insignia && cells[0][1] = insignia && cells[0][2]) && (cells[0][0] == insignia && cells[1][1] == insignia && cells[2][2] == insignia)
-            
-        }*/
         
         private bool ThereIsALeftToRightDiagonalWin(string[][] cells, int x, int y, string insignia)
         {
@@ -64,7 +58,7 @@ namespace TicTacToe
 
         private bool ThereIsAHorizontalWin(string[][] cells, string insignia)
         {
-            for (int y = 0; y < cells.Length; y++) // time y = 3 (traditionally it would be y^2, but this is Big O notation is y*x) n^2 n*k
+            for (int y = 0; y < cells.Length; y++)
             {
                 if (cells[y][0] == cells[y][1] && cells[y][1] == cells[y][2] && cells[y][0] == insignia)
                 {
@@ -76,7 +70,7 @@ namespace TicTacToe
 
         private bool ThereIsAVerticalWin(string[][] cells, string insignia)
         {
-            for (int x = 0; x < cells.Length; x++) // (overall time complexity 2n vs n^2/n*k) try not to use y and x as it could be related t coordinates
+            for (int x = 0; x < cells.Length; x++) 
             {
                 if (cells[0][x] == cells[1][x] && cells[1][x] == cells[2][x] && cells[0][x] == insignia)
                 {

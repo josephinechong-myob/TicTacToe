@@ -29,6 +29,5 @@ namespace TicTacToe
                 return false;
             }
         }
-
     }
 }
