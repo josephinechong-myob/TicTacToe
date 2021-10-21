@@ -7,6 +7,22 @@ namespace TicTacToe_Test
     public class BoardTest
     {
         [Fact]
+        public void Is_A_New_Game_Should_Have_Empty_Cells()
+        {
+            //arrange
+            var console = new GameConsole();
+            var board = new Board(console);
+            var coordinate = new Coordinate(1, 1);
+            
+            //act
+            board.SetPlayersCoordinates(coordinate, Insignia.X);
+            var expectedResult = board.IsANewGame();
+            
+            //assert
+            Assert.Equal(false, expectedResult);
+        }
+        
+        [Fact]
         public void New_Board_Should_Print_Initial_Board()
         {
             //arrange

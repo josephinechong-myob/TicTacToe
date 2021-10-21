@@ -64,7 +64,17 @@ namespace TicTacToe
 
         public bool IsANewGame()
         {
-            return Cells.ToString() == _emptyBoard.ToString();
+            for (int i = 0; i < Cells.Length; i++)
+            {
+                for (int j = 0; j < Cells[i].Length; j++)
+                {
+                    if (Cells[i][j] != ".")
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         
         public void BoardStatus()
