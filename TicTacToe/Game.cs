@@ -1,3 +1,5 @@
+using System;
+
 namespace TicTacToe
 {
     public class Game
@@ -39,9 +41,15 @@ namespace TicTacToe
             {
                 return true;
             }
-            _console.WriteLine("Do you want to play again? Yes - 1, No - 0");
+
+            var input = string.Empty;
+            _console.WriteLine("Do you want to play again?");
             
-            var input = _console.ReadLine();
+            while(!PlayerInputValidator.IsValidResetOption(input))
+            {
+                _console.WriteLine("Please enter 1 for Yes, 0 for No");
+                input =_console.ReadLine();
+            }
             if (input == "1")
             {
                 return true;

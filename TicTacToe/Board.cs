@@ -7,7 +7,7 @@ namespace TicTacToe
     {
         public string[][] Cells { get; set; }
         private readonly IConsole _console;
-        private string[][] _emptyBoard = new string[][]
+        private readonly string[][] _emptyBoard = new string[][]
         {
             new string[]{".",".","."},
             new string[]{".",".","."},
@@ -15,7 +15,12 @@ namespace TicTacToe
         };
         public Board(IConsole console)
         {
-            Cells = _emptyBoard;
+            Cells = new string[][]
+            {
+                new string[]{".",".","."},
+                new string[]{".",".","."},
+                new string[]{".",".","."},
+            };
             _console = console;
         }
         public Board(String[][] cells, IConsole console)
@@ -58,20 +63,23 @@ namespace TicTacToe
   
         public string[][] ResetBoard()
         {
-            Cells = _emptyBoard;
+            Cells = new string[][]
+            {
+                new string[]{".",".","."},
+                new string[]{".",".","."},
+                new string[]{".",".","."},
+            };
             return Cells;
         }
 
         public bool IsANewGame()
         {
+            
             for (int i = 0; i < Cells.Length; i++)
             {
-                for (int j = 0; j < Cells[i].Length; j++)
+                if (Cells[i].Any(cell => cell != "."))
                 {
-                    if (Cells[i][j] != ".")
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
             return true;

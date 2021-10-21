@@ -11,6 +11,12 @@ namespace TicTacToe
             return positionIsValid;
         }
         
+        public static bool IsValidResetOption(string playerInput)
+        {
+            var pattern = new Regex(@"^[01]$");
+            var optionIsValid = pattern.IsMatch(playerInput);
+            return optionIsValid;
+        }
         //invalid throw an exception
         
     }
