@@ -1,29 +1,29 @@
 # TicTacToe
 
-Tic Tac Toe is one of the few games that transcends cultures and continents, it is easily understood and cost nothing to play.
+Tic Tac Toe is one of the few games that transcends cultures and continents, it is easily understood and cost nothing to play. This Tic Tac Toe game has been developed in C# for this [kata](https://github.com/MYOB-Technology/General_Developer/blob/main/katas/kata-foundational/foundational-kata-tictactoe.md).
 
-## The rule of the game
+## Game objective
 
-### Game Play
-
-Two players are required for a game.
-Each player will assume wither an “X” or “O”.
-Players take turn to play till a player wins, or the end of the game (whichever happens first).
+Two players (assigned “X” or “O”) take turns to play until a player wins, draws or forfeits the game.
 
 ### Condition for a win
-
 A player wins when all fields in a column are taken by the player.
 A player wins when all fields in a row are taken by the player.
 A player wins when all fields in a diagonal are taken by the player.
 
 ### Conditions for a draw
-
 The game is drawn when all fields are taken on the board.
 
-## Basic Tic Tac Toe
+## Run & Build Notes
+You need to be able to read the code on an IDE that can compile C# (i.e. Rider). The game is played on the terminal.
 
-We are going old school.
-
-Here we implement a console based version of Tic Tac Toe that allows two human players to play the game on a 3 x 3 board.
-
-It's really simple... The first player will be the X, the second player will be the O. You keep playing the game until there is a winner, a draw, or someone gives up.
+## Coding principles used:
+- TDD (Test driven development)
+- Good testing code coverage
+- Test doubles & Mocks
+- Interfaces
+- Inline testing & Facts (Unit tests)
+- Constructor methods & public fields 
+- Single responsibility principle (SRP) to write functions
+- DRY principle (do not repeat yourself)
+- Readability for functions and their names
